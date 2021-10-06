@@ -16,6 +16,7 @@ const options = {
   security: {
     csrf: false,
   },
+  favicon: 'public/favicon.png',
 };
 
 server(
