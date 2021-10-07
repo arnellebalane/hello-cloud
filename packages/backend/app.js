@@ -27,14 +27,23 @@ server(
   })),
   modern(morgan('tiny')),
 
-  get('/', () => json({
-    name: pkg.name,
-    version: pkg.version,
-  })),
+  get('/', async () => {
+    await sleep(2000);
+    return json({
+      name: pkg.name,
+      version: pkg.version,
+    });
+  }),
 ).then(ctx => {
   console.log('PORT:', PORT);
   console.log('CORS_ORIGINS:', CORS_ORIGINS);
 });
+
+function sleep(milliseconds) {
+  return new Promise(resolve => {
+    setTimeout(resolve, milliseconds);
+  });
+}
 
 
 
